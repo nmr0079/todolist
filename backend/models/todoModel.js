@@ -3,11 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 //structure of our todolist todoitem data
-const todolistSchema = new Schema({
-    id : {
-        type : Number,
-        required : true
-    },
+const todoItemSchema = new Schema({
     title : {
         type : String,
         required : true
@@ -18,4 +14,4 @@ const todolistSchema = new Schema({
     }
 }, { timestamps : true})
 
-module.exports = mongoose.model('todoitem', todolistSchema) //model applies the schema structure to the data item
+module.exports = mongoose.model('todoitem', todoItemSchema) //model applies the schema structure to the data item

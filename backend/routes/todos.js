@@ -1,4 +1,5 @@
 const express = require('express')
+const todoitem = require('../models/todoModel')
 
 //creating an instance of the router
 const router = express.Router()
@@ -15,7 +16,15 @@ router.get('/:id', (req, res) => {
 
 //to create a new todo item
 //for a post or patch request, we are sending data to the server
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const {title, description} = req.body
+
+    try {
+        const todoItem = await todoitem.create({title,description})
+        res.status(200).json(todoItem)  //if the post was a success
+    } catch (error) {
+        res.status(400).json({error : error.message})
+    }
     res.json({mssg : 'Post a new todo item'})
 })
 
